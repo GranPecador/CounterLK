@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">CounterLK</string>
+    <string name="app_name">Личный кабинет</string>
+    <string name="login_login_hint">Логин</string>
+    <string name="login_password_hint">Пароль</string>
+    <string name="login_enter_btn">Войти</string>
+    <string name="login_registration_btntxt">Регистрация</string>
+
 </resources>
