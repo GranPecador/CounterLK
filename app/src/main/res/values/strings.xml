@@ -5,4 +5,10 @@
     <string name="login_enter_btn">Войти</string>
     <string name="login_registration_btntxt">Регистрация</string>
 
+    <string name="registration_email_hint">Email</string>
+    <string name="registration_telephone_hint">Телефон</string>
+    <string name="registration_name_hint">Имя</string>
+    <string name="registration_surname_hint">Фамилия</string>
+    <string name="registration_create_btn">Создать</string>
+
 </resources>

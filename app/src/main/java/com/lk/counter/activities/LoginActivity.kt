@@ -1,10 +1,18 @@
 package com.lk.counter.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.accessibility.AccessibilityManager
 import android.widget.Toast
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.textfield.TextInputEditText
 import com.lk.counter.R
+import com.lk.counter.api.RetrofitClient
+import com.lk.counter.models.LoginResponse
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
 
@@ -12,9 +20,47 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        val loginEdit =  findViewById<TextInputEditText>(R.id.login_login_edt)
+        val passwordEdit = findViewById<TextInputEditText>(R.id.login_password_edt)
         val loginButton = findViewById<MaterialButton>(R.id.login_enter_btn)
         loginButton.setOnClickListener{
-            Toast.makeText(this, "pfq", Toast.LENGTH_LONG).show()
+            val login = loginEdit.text.toString().trim()
+            val password = passwordEdit.text.toString().trim()
+
+            if (login.isEmpty()){
+                loginEdit.error = "Login required!"
+                loginEdit.requestFocus()
+                return@setOnClickListener
+            }
+            if (password.isEmpty()){
+                passwordEdit.error = "Password required!"
+                passwordEdit.requestFocus()
+                return@setOnClickListener
+            }
+
+            RetrofitClient.instance.postLogin(login,password)
+                .enqueue(object: Callback<LoginResponse> {
+                    override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                        Toast.makeText(applicationContext, "Trabli", Toast.LENGTH_LONG).show()
+                    }
+
+                    override fun onResponse(
+                        call: Call<LoginResponse>,
+                        response: Response<LoginResponse>
+                    ) {
+                        if(response.isSuccessful)
+                            Toast.makeText(applicationContext, "${response.code()} ${response.body()?.token}", Toast.LENGTH_LONG).show()
+                        else
+                            Toast.makeText(applicationContext, "${response.code()}", Toast.LENGTH_LONG).show()
+
+                    }
+
+                })
+        }
+        val registrationButton = findViewById<MaterialButton>(R.id.login_registration_btn)
+        registrationButton.setOnClickListener{
+            val intent = Intent(this, RegistrationActivity::class.java)
+            startActivity(intent)
         }
     }
 }
