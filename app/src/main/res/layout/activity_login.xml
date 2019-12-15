@@ -61,7 +61,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintBottom_toTopOf="@+id/login_registration_btn"
         app:layout_constraintEnd_toEndOf="@+id/login_enter_btn"
         app:layout_constraintStart_toStartOf="@+id/login_enter_btn"
         app:layout_constraintTop_toBottomOf="@+id/login_enter_btn" />

@@ -11,4 +11,13 @@ interface JSONPlaceHolderApi {
     @POST("/login")
     fun postLogin(@Field("login") login:String,
                   @Field("password") password:String): Call<LoginResponse>
+
+    @FormUrlEncoded
+    @POST("/register")
+    fun postRegister(@Field("login") login:String,
+                     @Field("password") password:String,
+                     @Field("email") email:String,
+                     @Field("telephone") telephone:String,
+                     @Field("name") name:String,
+                     @Field("surname") surname:String): Call<LoginResponse>
 }

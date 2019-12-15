@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#C80002</color>
+    <color name="colorPrimary">#EA0001</color>
     <color name="colorPrimaryDark">#000</color>
-    <color name="colorAccent">#EA0001</color>
+    <color name="colorAccent">#C80002</color>
     <color name="colorBackground">#Fff</color>
     <color name="colorPrimary0">#00C80002</color>
     <color name="colorBlack">#000000</color>
     <color name="colorGrayLight">#fafafa</color>
     <color name="colorGrayMiddle">#c8c8c8</color>
+    <color name="colorRedDark">#C80002</color>
     <color name="colorRedBright">#EA0001</color>
     <color name="mtrl_textinput_filled_box_default_background_col">#0A000000</color>
 </resources>

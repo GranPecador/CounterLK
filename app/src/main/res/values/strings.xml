@@ -11,4 +11,13 @@
     <string name="registration_surname_hint">Фамилия</string>
     <string name="registration_create_btn">Создать</string>
 
+    <string name="add_address_create_btn">Добавить</string>
+    <string name="add_address_country_hint">Страна</string>
+    <string name="add_address_city_hint">Город</string>
+    <string name="add_address_street_hint">Улица/Проспект</string>
+    <string name="add_address_home_number_hint">Дом</string>
+    <string name="add_address_apartment_hint">Квартира</string>
+    <string name="menu_drawer_add_address_text">Добавить адрес</string>
+
+
 </resources>
