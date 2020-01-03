@@ -17,7 +17,20 @@
     <string name="add_address_street_hint">Улица/Проспект</string>
     <string name="add_address_home_number_hint">Дом</string>
     <string name="add_address_apartment_hint">Квартира</string>
-    <string name="menu_drawer_add_address_text">Добавить адрес</string>
 
+    <string name="menu_drawer_add_address_text">Добавить адрес</string>
+    <string name="menu_drawer_add_room_text">Добавить комнату</string>
+    <string name="menu_drawer_activate_counter_text">Активировать счетчик</string>
+    <string name="menu_drawer_addresses_text">Посмотреть счетчики</string>
+    <string name="menu_drawer_exit_text">Выйти</string>
+
+
+    <string name="add_room_name_hint">Название</string>
+    <string name="add_room_create_btn">Добавить</string>
+
+    <string name="activate_counter_btntxt">Активировать</string>
+    <string name="add_address_login_hint">Введите логин</string>
+
+    <string name="fragment_addresses_select_address_hint">Выберите адрес</string>
 
 </resources>

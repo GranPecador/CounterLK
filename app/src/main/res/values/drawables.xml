@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="ic_error" type="drawable">com.android.internal.R.drawable.indicator_input_error</item>
+</resources>

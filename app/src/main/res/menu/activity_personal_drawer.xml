@@ -4,11 +4,26 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_addresses"
+            android:icon="@drawable/city_variant_outline"
+            android:title="@string/menu_drawer_addresses_text"/>
+        <item
+            android:id="@+id/nav_rooms"
+            android:title="Посмотреть комнаты"/>
 
         <item
             android:id="@+id/nav_add_address"
-            android:icon="@drawable/address"
+            android:icon="@drawable/ic_home_work_24px"
             android:title="@string/menu_drawer_add_address_text"/>
+        <item
+            android:id="@+id/nav_activate_counter"
+            android:icon="@drawable/counter"
+            android:title="@string/menu_drawer_activate_counter_text"/>
+        <item
+            android:id="@+id/nav_exit"
+            android:icon="@drawable/exit"
+            android:title="@string/menu_drawer_exit_text"/>
 
     </group>
 

@@ -3,12 +3,39 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_add_address">
+    app:startDestination="@+id/nav_addresses">
+
+    <fragment
+        android:id="@+id/nav_addresses"
+        android:name="com.lk.counter.fragments.AddressFragment"
+        tools:layout="@layout/fragment_counter_list"/>
+
+    <fragment
+        android:id="@+id/nav_rooms"
+        android:name="com.lk.counter.fragments.RoomFragment"
+        android:label="Посмотреть комнаты"
+        tools:layout="@layout/fragment_room_list"/>
 
     <fragment
         android:id="@+id/nav_add_address"
         android:name="com.lk.counter.fragments.AddAddressFragment"
         android:label="@string/menu_drawer_add_address_text"
         tools:layout="@layout/fragment_add_address"/>
+
+     <fragment
+         android:id="@+id/nav_add_room"
+         android:name="com.lk.counter.fragments.AddRoomFragment"
+         android:label="@string/menu_drawer_add_room_text"
+         tools:layout="@layout/fragment_add_room"/>
+
+    <fragment
+        android:id="@+id/nav_activate_counter"
+        android:name="com.lk.counter.fragments.ActivateCounterFragment"
+        android:label="@string/menu_drawer_activate_counter_text"
+        tools:layout="@layout/fragment_activate_counter"/>
+
+    <fragment
+        android:id="@+id/nav_exit"
+        android:name="com.lk.counter.fragments.ExitFragment" />
 
 </navigation>

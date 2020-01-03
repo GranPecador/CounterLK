@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/registration_lofin_edt"
+            android:id="@+id/registration_login_edt"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:ems="10"
@@ -143,7 +143,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/login_enter_btn"
+        android:id="@+id/registration_create_btn"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

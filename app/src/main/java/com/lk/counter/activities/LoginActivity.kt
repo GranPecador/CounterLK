@@ -10,6 +10,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.lk.counter.R
 import com.lk.counter.api.RetrofitClient
 import com.lk.counter.models.LoginResponse
+import com.lk.counter.storage.SharedPrefManager
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -17,6 +18,13 @@ import retrofit2.Response
 class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        SharedPrefManager.newInstance().initPref(applicationContext)
+        if (SharedPrefManager.isLoggedIn()){
+            val intent =
+                Intent(this@LoginActivity, PersonalActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
@@ -48,8 +56,17 @@ class LoginActivity : AppCompatActivity() {
                         call: Call<LoginResponse>,
                         response: Response<LoginResponse>
                     ) {
-                        if(response.isSuccessful)
-                            Toast.makeText(applicationContext, "${response.code()} ${response.body()?.token}", Toast.LENGTH_LONG).show()
+                        if(response.isSuccessful){
+                            response.body()?.let {
+                                SharedPrefManager.setUser(it.token, login)
+
+                                val intent =
+                                    Intent(this@LoginActivity, PersonalActivity::class.java)
+                                intent.flags =
+                                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                startActivity(intent)
+                            }
+                        }
                         else
                             Toast.makeText(applicationContext, "${response.code()}", Toast.LENGTH_LONG).show()
 
