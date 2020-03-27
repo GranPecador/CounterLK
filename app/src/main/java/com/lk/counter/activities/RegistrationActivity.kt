@@ -81,10 +81,11 @@ class RegistrationActivity : AppCompatActivity() {
                     ) {
                         if(response.isSuccessful) {
                             response.body()?.let {
-                                SharedPrefManager.setUser(it.token, login)
+
+                                SharedPrefManager.setUser(it.token, login, it.role)
 
                                 val intent =
-                                    Intent(this@RegistrationActivity, PersonalActivity::class.java)
+                                    Intent(this@RegistrationActivity, PersonalAdminActivity::class.java)
                                 intent.flags =
                                     Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                 startActivity(intent)

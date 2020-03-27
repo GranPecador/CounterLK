@@ -40,6 +40,9 @@ class ActivateCounterFragment : Fragment() {
     private lateinit var loginEdt:TextInputEditText
     private lateinit var serialNumberEdt:TextInputEditText
     private lateinit var activateBtn: MaterialButton
+    private var selectedCurrentIdAddress : Int = 0
+    private var selectedCurrentIdRoom : Int = 0
+    private var selectedCurrentCounterType : Int = 0
 
     private lateinit var adapterAddress:ArrayAdapter<String?>
     private lateinit var adapterRoom:ArrayAdapter<String?>
@@ -88,15 +91,25 @@ class ActivateCounterFragment : Fragment() {
             adapterAddress = ArrayAdapter(it, R.layout.dropdown_menu_popup_item, ArrayList())
             addressesDropdownMenu.setAdapter(adapterAddress)
             getAddressesFromServer()
+            addressesDropdownMenu.setOnItemClickListener { parent, view, position, id ->
+                selectedCurrentIdAddress = addressesId[position]
+                Toast.makeText(context, position.toString(), Toast.LENGTH_SHORT).show()
+            }
 
             adapterRoom = ArrayAdapter(it, R.layout.dropdown_menu_popup_item, ArrayList())
             roomsDropdownMenu.setAdapter(adapterRoom)
             getRoomsFromServer()
+            roomsDropdownMenu.setOnItemClickListener { parent, view, position, id ->
+                selectedCurrentIdRoom = roomsId[position]
+            }
 
             adapterCounterType =
                 ArrayAdapter(it, R.layout.dropdown_menu_popup_item, ArrayList())
             counterTypesDropdownMenu.setAdapter(adapterCounterType)
             getCounterTypeFromServer()
+            counterTypesDropdownMenu.setOnItemClickListener { parent, view, position, id ->
+                selectedCurrentCounterType = typesId[position]
+            }
         }
     }
 
@@ -134,6 +147,7 @@ class ActivateCounterFragment : Fragment() {
                                     addressesString.add("Нет адресов доступных")
                                 adapterAddress.addAll(addressesString)
                                 adapterAddress.notifyDataSetChanged()
+                                addressesDropdownMenu.setSelection(0)
                             }
                         }
                     } else {
@@ -260,7 +274,8 @@ class ActivateCounterFragment : Fragment() {
         val addrPos = addressesDropdownMenu.listSelection
         val roomPos = roomsDropdownMenu.listSelection
         val typePos = counterTypesDropdownMenu.listSelection
-        val counter = CounterActivatePostApi(loginEdt.text.toString(), 1, serialNumberEdt.text.toString(), 1, 1)
+        val counter = CounterActivatePostApi(loginEdt.text.toString(), selectedCurrentIdRoom,
+            serialNumberEdt.text.toString(), selectedCurrentIdAddress, selectedCurrentCounterType)
         sendActivateCounterToServer(counter)
         return true
     }

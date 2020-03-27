@@ -13,29 +13,29 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
+import com.lk.counter.OnListCountersInteractionListener
 import com.lk.counter.R
 import com.lk.counter.fragments.AddAddressFragment
 import com.lk.counter.fragments.AddressFragment
 import com.lk.counter.models.CounterGetApi
 import com.lk.counter.storage.SharedPrefManager
 
-class PersonalActivity : AppCompatActivity(), AddAddressFragment.OnFragmentInteractionListener, AddressFragment.OnListFragmentInteractionListener{
+class PersonalAdminActivity : AppCompatActivity(), AddAddressFragment.OnFragmentInteractionListener, OnListCountersInteractionListener{
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private var addressId = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
-//        if (!SharedPrefManager.isLoggedIn()){
-//            val intent =
-//                Intent(this@PersonalActivity, LoginActivity::class.java)
-//            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//
-//            startActivity(intent)
-//        }
-        SharedPrefManager.newInstance().initPref(applicationContext)
-        SharedPrefManager.setUser("jdfdjg", "dksjfdsjk")
+        if (!SharedPrefManager.isLoggedIn()){
+            val intent =
+                Intent(this@PersonalAdminActivity, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+            startActivity(intent)
+        }
+
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_personal)
+        setContentView(R.layout.activity_personal_admin)
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -69,7 +69,7 @@ class PersonalActivity : AppCompatActivity(), AddAddressFragment.OnFragmentInter
     override fun onFragmentInteraction(uri: Uri) {
     }
 
-    override fun onListFragmentInteraction(item: CounterGetApi) {
+    override fun onListCountersInteraction(item: CounterGetApi) {
         val intent = Intent(this, CounterActivity::class.java)
         intent.putExtra("COUNTER", item)
         //intent.putExtra("IDCOUNTER", item.counterId)

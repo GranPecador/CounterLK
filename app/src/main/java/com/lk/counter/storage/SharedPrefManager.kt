@@ -18,6 +18,7 @@ class SharedPrefManager() {
 
         private val TOKENPREF = "token_pref"
         private val LOGINPREF = "login_pref"
+        private val ROLEPREF = "role_pref"
 
         lateinit var mSharedPref : SharedPreferences
 
@@ -31,10 +32,11 @@ class SharedPrefManager() {
                 .isNotEmpty()
         }
 
-        fun setUser(token:String, login:String){
+        fun setUser(token:String, login:String, role:String){
             val prefEditor = mSharedPref.edit()
             prefEditor.putString(TOKENPREF, token)
             prefEditor.putString(LOGINPREF, login)
+            prefEditor.putString(ROLEPREF, role)
             prefEditor.apply()
         }
 
@@ -49,10 +51,15 @@ class SharedPrefManager() {
             return ""
         }
 
+        fun getRole():String {
+            return mSharedPref.getString(ROLEPREF, "")
+        }
+
         fun deleteUserData(){
             val prefEditor = mSharedPref.edit()
             prefEditor.remove(TOKENPREF)
             prefEditor.remove(LOGINPREF)
+            prefEditor.remove(ROLEPREF)
             prefEditor.apply()
         }
 

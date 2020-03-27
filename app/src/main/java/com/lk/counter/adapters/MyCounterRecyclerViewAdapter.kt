@@ -7,22 +7,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.lk.counter.OnListCountersInteractionListener
 import com.lk.counter.R
-import com.lk.counter.fragments.AddressFragment
 
 
-import com.lk.counter.fragments.AddressFragment.OnListFragmentInteractionListener
 import com.lk.counter.models.CounterGetApi
 
 import kotlinx.android.synthetic.main.fragment_counter.view.*
 
 /**
  * [RecyclerView.Adapter] that can display a [Counter] and makes a call to the
- * specified [OnListFragmentInteractionListener].
+ * specified [CounterOnListFragmentInteractionListener].
  */
 class MyCounterRecyclerViewAdapter: RecyclerView.Adapter<MyCounterRecyclerViewAdapter.ViewHolder>() {
     private val mValues: MutableList<CounterGetApi> = ArrayList()
-    private var mListener: OnListFragmentInteractionListener? = null
+    private var mListenerCounters: OnListCountersInteractionListener? = null
     private val mOnClickListener: View.OnClickListener
 
     init {
@@ -30,12 +29,12 @@ class MyCounterRecyclerViewAdapter: RecyclerView.Adapter<MyCounterRecyclerViewAd
             val item = v.tag as CounterGetApi
             // Notify the active callbacks interface (the activity, if the fragment is attached to
             // one) that an item has been selected.
-            mListener?.onListFragmentInteraction(item)
+            mListenerCounters?.onListCountersInteraction(item)
         }
     }
 
-    fun setListener(listener: OnListFragmentInteractionListener?){
-        mListener = listener
+    fun setListener(listenerCounters: OnListCountersInteractionListener?){
+        mListenerCounters = listenerCounters
     }
 
     fun setData(newCounters:List<CounterGetApi>){
@@ -59,8 +58,6 @@ class MyCounterRecyclerViewAdapter: RecyclerView.Adapter<MyCounterRecyclerViewAd
             holder.mCircul.background = holder.blue
         else
             holder.mCircul.background =holder.red
-
-
         with(holder.mView) {
             tag = item
             setOnClickListener(mOnClickListener)

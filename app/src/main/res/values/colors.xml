@@ -11,4 +11,6 @@
     <color name="colorRedDark">#C80002</color>
     <color name="colorRedBright">#EA0001</color>
     <color name="mtrl_textinput_filled_box_default_background_col">#0A000000</color>
+    <color name="white">#FFF</color>
+    <color name="blue">#1976d2</color>
 </resources>

@@ -15,18 +15,21 @@
         android:supportsRtl="true"
         android:theme="@style/MaterialAppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activities.CounterActivity"></activity>
+        <activity android:name=".activities.PersonalUserActivity"></activity>
+        <activity android:name=".activities.PersonalWorkerActivity" />
         <activity
-            android:name=".activities.PersonalActivity"
-            android:theme="@style/MaterialAppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:name=".activities.CounterActivity"
+            android:theme="@style/MaterialAppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.PersonalAdminActivity"
+            android:theme="@style/MaterialAppTheme.NoActionBar" />
         <activity android:name=".activities.RegistrationActivity" />
         <activity android:name=".activities.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

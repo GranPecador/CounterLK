@@ -13,13 +13,13 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
+import com.lk.counter.OnListCountersInteractionListener
 import com.lk.counter.R
 import com.lk.counter.adapters.MyCounterRecyclerViewAdapter
 import com.lk.counter.api.RetrofitClient
 
 import com.lk.counter.models.AddressApi
 import com.lk.counter.models.AddressesListApi
-import com.lk.counter.models.CounterGetApi
 import com.lk.counter.models.CountersListApi
 import com.lk.counter.storage.SharedPrefManager
 import retrofit2.Call
@@ -36,8 +36,9 @@ class AddressFragment : Fragment() {
 
     private lateinit var addressesAdapter: ArrayAdapter<String?>
     private var addressesId:ArrayList<Int?> = ArrayList()
+    private lateinit var dropdownMenu:AutoCompleteTextView
 
-    private var listener: OnListFragmentInteractionListener? = null
+    private var listenerCounters: OnListCountersInteractionListener? = null
     private val adapterCounters = MyCounterRecyclerViewAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,19 +54,21 @@ class AddressFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_counter_list, container, false)
-        val dropdownMenu =
-            view.findViewById<AutoCompleteTextView>(R.id.fragment_addresses_dropdown_menu)
+        dropdownMenu =
+            view.findViewById(R.id.fragment_addresses_dropdown_menu)
         addressesAdapter = ArrayAdapter(context, R.layout.dropdown_menu_popup_item, ArrayList())
         dropdownMenu.setAdapter(addressesAdapter)
         dropdownMenu.threshold = 0
         dropdownMenu.setOnItemClickListener { parent, view, position, id ->
-            addressesId[position]?.let { getCountersFromServer(it)}
+            addressesId[position]?.let {
+                getCountersFromServer(it)
+                Toast.makeText(context, position.toString(), Toast.LENGTH_SHORT).show()
+            }
         }
-        activity?.actionBar?.customView = dropdownMenu
         getAddressesFromServer()
 
         val countersRecycler = view.findViewById<RecyclerView>(R.id.counters_list)
-        adapterCounters.setListener(listener)
+        adapterCounters.setListener(listenerCounters)
         // Set the adapter
         with(countersRecycler) {
             layoutManager = when {
@@ -127,6 +130,8 @@ class AddressFragment : Fragment() {
             addressesId.add(addr.addressId)
         }
         addressesAdapter.notifyDataSetChanged()
+        dropdownMenu.listSelection = 0
+        getCountersFromServer(list[0].addressId)
     }
 
     private fun getCountersFromServer(addressId: Int){
@@ -166,8 +171,8 @@ class AddressFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is OnListFragmentInteractionListener) {
-            listener = context
+        if (context is OnListCountersInteractionListener) {
+            listenerCounters = context
         } else {
             throw RuntimeException(context.toString() + " must implement OnListFragmentInteractionListener")
         }
@@ -175,11 +180,7 @@ class AddressFragment : Fragment() {
 
     override fun onDetach() {
         super.onDetach()
-        listener = null
-    }
-
-    interface OnListFragmentInteractionListener {
-        fun onListFragmentInteraction(item: CounterGetApi)
+        listenerCounters = null
     }
 
     companion object {

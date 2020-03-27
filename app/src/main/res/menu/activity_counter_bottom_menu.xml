@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/counter_info_fragment_item"
+        android:icon="@drawable/ic_info_black_24dp"
+        android:title="Инфо"/>
+    <item
+        android:id="@+id/counter_messages_fragment_item"
+        android:icon="@drawable/ic_view_messages_black_24dp"
+        android:title="Журнал"/>
+    <item
+        android:id="@+id/counter_analytics_fragment_item"
+        android:icon="@drawable/ic_analytics_black_24dp"
+        android:title="Анализ"/>
+
+</menu>
