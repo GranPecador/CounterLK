@@ -9,4 +9,8 @@ class AddressApi(@SerializedName("id") val addressId:Int,
                  @SerializedName("street") val street:String,
                  @SerializedName("homeNumber") val homeNumber:Int,
                  @SerializedName("flat") val flat:Int
-                 )
+                 ) {
+    override fun toString(): String {
+        return "$country, $city, $street, $homeNumber, $flat"
+    }
+}

@@ -46,10 +46,8 @@ class PersonalAdminActivity : AppCompatActivity(), AddAddressFragment.OnFragment
         appBarConfiguration = AppBarConfiguration(
             topLevelDestinationIds = setOf(
                 R.id.nav_add_address,
-                R.id.nav_add_room,
                 R.id.nav_activate_counter,
                 R.id.nav_addresses,
-                R.id.nav_rooms,
                 R.id.nav_exit
             ), drawerLayout = drawerLayout
         )
